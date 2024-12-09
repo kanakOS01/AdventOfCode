@@ -4,9 +4,11 @@ def read_input():
 
 
 inp = list(map(int, read_input()))
-inp = list(map(int, '2333133121414131402'))
-inp = list(map(int, '12345'))
+# inp = list(map(int, '2333133121414131402'))
+# inp = list(map(int, '12345'))
 n = len(inp)
+print(n)
+
 
 def part1():
     disk = []
@@ -16,15 +18,15 @@ def part1():
             disk = disk + [i] * inp[j]
             i += 1
         else:
-            disk = disk + ['.'] * inp[j]
+            disk = disk + ["."] * inp[j]
 
     # print(disk)
     print(disk)
     i, j = 0, len(disk) - 1
     while i <= j:
-        if disk[j] == '.':
+        if disk[j] == ".":
             j -= 1
-        elif disk[i] != '.':
+        elif disk[i] != ".":
             i += 1
         else:
             disk[i], disk[j] = disk[j], disk[i]
@@ -34,10 +36,10 @@ def part1():
     print(disk)
     res = 0
     for i in range(len(disk)):
-        if disk[i] == '.':
+        if disk[i] == ".":
             break
-        res += (i * disk[i])
-    
+        res += i * disk[i]
+
     return res
 
 
@@ -59,20 +61,20 @@ def part2():
             for j in range(int(inp[i])):
                 expanded.append(None)
                 pos += 1
-            
+
     for pos, cnt, id in reversed(files):
         for spaces_i, (spaces_pos, spaces_cnt) in enumerate(spaces):
             if spaces_pos < pos and spaces_cnt >= cnt:
                 for i in range(cnt):
-                    expanded[spaces_pos+i] = id
-                    expanded[pos+i] = None
-                spaces[spaces_i] = (spaces_pos+cnt, spaces_cnt-cnt)
+                    expanded[spaces_pos + i] = id
+                    expanded[pos + i] = None
+                spaces[spaces_i] = (spaces_pos + cnt, spaces_cnt - cnt)
                 break
 
     res = 0
     for i in range(len(expanded)):
         if expanded[i]:
-            res += (i*expanded[i]) 
+            res += i * expanded[i]
 
     return res
 
