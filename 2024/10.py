@@ -8,11 +8,12 @@ grid = [list(map(int, i)) for i in inp]
 n = len(grid)
 dirs = [[0, 1], [1, 0], [-1, 0], [0, -1]]
 
+
 def dfs(i, j, visited):
     if grid[i][j] == 9 and (i, j) not in visited:
         visited.add((i, j))
         return 1
-    
+
     res = 0
     for di, dj in dirs:
         ni, nj = i + di, j + dj
@@ -31,10 +32,11 @@ def part1():
 
     return res
 
+
 def dfs2(i, j):
     if grid[i][j] == 9 and (i, j):
         return 1
-    
+
     res = 0
     for di, dj in dirs:
         ni, nj = i + di, j + dj
@@ -43,6 +45,7 @@ def dfs2(i, j):
 
     return res
 
+
 def part2():
     res = 0
     for i in range(n):
@@ -50,6 +53,7 @@ def part2():
             if grid[i][j] == 0:
                 res += dfs2(i, j)
     return res
+
 
 print(part1())
 print(part2())
