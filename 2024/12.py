@@ -45,7 +45,40 @@ def part1():
             
 
 def part2():
-    pass
+    vis = set()
+
+    def dfs(i, j, group):
+        if (i, j) in group or (i, j) in vis:
+            return
+    
+        group.add(i, j)
+        for di, dj in dirs:
+            ni, nj = i + di, j + dj
+            if grid[i][j] == grid[ni][nj]:
+                dfs(ni, nj, group)
+
+    groups = []
+    for i in range(1, n+1):
+        for j in range(1, n+1):
+            group = set()
+            dfs(i, j, group)
+            groups.append(group)
+
+    res = 0
+    for group in groups:
+        a = len(group)
+        s = 0
+        corners = 0
+        for i, j in group:
+            # corner
+            cnt = 0
+            if (i+1, j) in group: cnt += 1
+            if (i-1, j) in group: cnt += 1
+            if (i, j+1) in group: cnt += 1
+            if (i, j-1) in group: cnt += 1
+            if cnt == 2:
+                pass
+
 
 
 print(part1())
