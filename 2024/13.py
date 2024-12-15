@@ -4,9 +4,9 @@ import functools
 def read_input():
     with open("2024/input/13.txt") as f:
         return f.read().strip()
-    
 
-inp = read_input().split('\n\n')
+
+inp = read_input().split("\n\n")
 # inp = """Button A: X+94, Y+34
 # Button B: X+22, Y+67
 # Prize: X=8400, Y=5400
@@ -29,18 +29,17 @@ buttons = []
 prizes = []
 prizes2 = []
 for i in inp:
-    lines = i.split('\n')
-    line = lines[0][10:].split(', ')
+    lines = i.split("\n")
+    line = lines[0][10:].split(", ")
     a = (int(line[0][2:]), int(line[1][2:]))
-    line = lines[1][10:].split(', ')
+    line = lines[1][10:].split(", ")
     b = (int(line[0][2:]), int(line[1][2:]))
-    line = lines[2][7:].split(', ')
+    line = lines[2][7:].split(", ")
     prize = (int(line[0][2:]), int(line[1][2:]))
 
     buttons.append((a, b))
     prizes.append(prize)
     prizes2.append((prize[0] + 10000000000000, prize[1] + 10000000000000))
-    
 
 
 ## TAKING TOO MUCH TIME
@@ -52,11 +51,12 @@ def dfs(ax, ay, bx, by, px, py, ca, cb):
         return 0
     if px < 0 or py < 0 or ca > 100 or cb > 100:
         return float("inf")
-    
-    ch1 = 3 + dfs(ax, ay, bx, by, px-ax, py-ay, ca+1, cb)
-    ch2 = 1 + dfs(ax, ay, bx, by, px-bx, py-by, ca, cb+1)
+
+    ch1 = 3 + dfs(ax, ay, bx, by, px - ax, py - ay, ca + 1, cb)
+    ch2 = 1 + dfs(ax, ay, bx, by, px - bx, py - by, ca, cb + 1)
 
     return min(ch1, ch2)
+
 
 def part1():
     res = 0
@@ -68,7 +68,7 @@ def part1():
         if tmp < float("inf"):
             res += tmp
     return res
-    
+
 
 def part2():
     res = 0
